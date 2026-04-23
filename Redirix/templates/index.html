@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirix - Website Redirect Analyzer</title>
+    <meta name="description" content="Instantly analyze any URL's redirect behavior with Redirix.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1 class="logo">Redirix</h1>
+            <p class="subtitle">Analyze Website Redirect Behavior Instantly</p>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <input type="text" id="urlInput" placeholder="Enter URL (e.g., example.com)" autocomplete="off" />
+                <button id="analyzeBtn" class="primary-btn">Analyze</button>
+            </div>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing redirects...</p>
+            </div>
+            
+            <div id="error" class="error-msg hidden"></div>
+
+            <div id="results" class="results-container hidden">
+                <div class="summary-cards">
+                    <div class="card">
+                        <h3>Redirects</h3>
+                        <p id="redirectCount" class="stat-value">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Time</h3>
+                        <p id="totalTime" class="stat-value">0s</p>
+                    </div>
+                    <div class="card verdict-card" id="verdictCard">
+                        <h3>Verdict</h3>
+                        <p id="verdictText" class="stat-value">Efficient</p>
+                    </div>
+                </div>
+
+                <div id="warningMsg" class="warning-msg hidden">
+                    ⚠️ Too many redirects may slow down the website.
+                </div>
+
+                <div class="chain-section">
+                    <h2>Redirect Chain</h2>
+                    <ul id="chainList" class="chain-list">
+                        <!-- Chain items injected dynamically here -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
